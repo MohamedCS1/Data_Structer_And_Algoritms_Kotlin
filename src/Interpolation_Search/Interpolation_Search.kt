@@ -1,0 +1,71 @@
+package Interpolation_Search
+
+fun main() {
+    var full:Int = 1
+    var ArrayOfNumber = arrayOfNulls<Int>(1000000)
+    for (i in 0..ArrayOfNumber.size-1)
+    {
+        ArrayOfNumber[i] = full++
+    }
+
+    var SearchNumber:Int? = null
+    while (true)
+    {
+        print("Enter Number for Search ----> ")
+        SearchNumber = try {
+
+            readLine()!!.toInt()
+
+        }catch (Ex:Exception){continue}
+        if (SearchNumber < 0 || SearchNumber > 1000000)
+        {
+            continue
+        }
+        print("\n")
+        break
+
+    }
+
+    run {
+        var Try:Int = 0
+        var Low:Int = 0
+        var Height:Int = ArrayOfNumber.size -1
+        var run:Boolean = true
+        if (SearchNumber == Low)
+        {
+            println("Number Find\n")
+            println("Number Find After ${Try} Try")
+            run = false
+
+        }
+        else if (SearchNumber == Height)
+        {
+            println("Number Find\n")
+            println("Number Find After ${Try} Try")
+            run = false
+        }
+
+        while (run == true)
+        {
+            Try++
+            var  Mid= Low + ((Height - Low) / (ArrayOfNumber[Height]!! - ArrayOfNumber[Low]!!)) * (SearchNumber!! - ArrayOfNumber[Low]!!)
+
+            if (SearchNumber == ArrayOfNumber[Mid])
+            {
+                println("Number Find\n")
+                println("Number Find After ${Try} Try")
+                break
+            }
+            if (SearchNumber > ArrayOfNumber[Mid]!!)
+            {
+                Low = Mid + 1
+            }
+            if (SearchNumber < ArrayOfNumber[Mid]!!)
+            {
+                Height = Mid - 1
+            }
+        }
+
+
+    }
+}
